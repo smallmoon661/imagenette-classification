@@ -12,8 +12,8 @@
 - [x] 记录运行环境
 - [x] 下载并检查 Imagenette 数据
 - [x] 初始化本地 Git 仓库并推送至 GitHub
-- [ ] 固定数据划分与类别映射
-- [ ] 生成 10 类样本图与各划分的类别数量统计
+- [x] 固定数据划分与类别映射
+- [x] 生成 10 类样本图与各划分的类别数量统计
 - [ ] 完成三组训练与最终测试
 - [ ] 整理图表、报告和学习过程记录
 
@@ -51,6 +51,25 @@ cd C:\Users\Gezihao\Desktop\学习记录\imagenette-classification
 - 官方 `train/`：9,469 张 JPG 图片，后续将按类别分层划分为训练集和内部验证集。
 - 官方 `val/`：3,925 张 JPG 图片，只用于最终留出测试。
 - `noisy_imagenette.csv`：本项目不使用。
+
+## 固定数据划分
+
+运行下面的命令可重新生成固定划分与数据检查结果：
+
+```powershell
+python src\prepare_data.py
+```
+
+脚本使用 `seed=42`，不会移动或复制原始图片，只在 CSV 中记录每张图片的归属：
+
+- `configs/class_mapping.json`：类别文件夹名、数字标签和可读类别名的对应关系。
+- `configs/train.csv`：7,575 张训练图片。
+- `configs/val.csv`：从官方 `train/` 分层划出的 1,894 张内部验证图片。
+- `configs/test.csv`：官方 `val/` 的 3,925 张最终留出测试图片。
+- `outputs/data/sample-grid.png`：覆盖 10 类、带标签的真实训练样本图。
+- `outputs/data/class_counts.csv`：三个划分中各类别的图片数量。
+
+后续 MLP、CNN 和 CNN 水平翻转对照必须复用这些 CSV，不重新随机划分数据。
 
 ## 版本控制
 

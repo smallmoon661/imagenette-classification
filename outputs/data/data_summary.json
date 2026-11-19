@@ -1,0 +1,15 @@
+{
+  "seed": 42,
+  "data_root": "C:\\Users\\Gezihao\\Desktop\\学习记录\\imagenette-classification\\data\\imagenette2-160",
+  "split_sizes": {
+    "train": 7575,
+    "val": 1894,
+    "test": 3925
+  },
+  "class_count": 10,
+  "image_extensions": [
+    ".jpeg",
+    ".jpg",
+    ".png"
+  ]
+}
