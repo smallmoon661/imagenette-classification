@@ -1,0 +1,25 @@
+# Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local data and training artifacts
+data/imagenette2-160/
+data/downloads/
+data/*.tgz
+checkpoints/**/*.pt
+checkpoints/**/*.pth
+outputs/**/tb/
+
+# Secrets and editor files
+.env
+.vscode/
+.idea/
+
+# LaTeX build intermediates
+report/*.aux
+report/*.log
+report/*.out
+report/*.synctex.gz
