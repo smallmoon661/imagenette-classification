@@ -9,9 +9,11 @@
 ## 当前进度
 
 - [x] 建立项目目录
-- [ ] 记录运行环境
-- [ ] 下载并检查 Imagenette 数据
+- [x] 记录运行环境
+- [x] 下载并检查 Imagenette 数据
+- [x] 初始化本地 Git 仓库并推送至 GitHub
 - [ ] 固定数据划分与类别映射
+- [ ] 生成 10 类样本图与各划分的类别数量统计
 - [ ] 完成三组训练与最终测试
 - [ ] 整理图表、报告和学习过程记录
 
@@ -28,12 +30,30 @@
 
 ## 环境
 
-2026-11-18 检测结果：
+2026-11-19 检测结果：
 
-- Python：3.14.7
-- PyTorch / TorchVision：当前解释器尚未安装，待配置。
-- 训练设备：待安装 PyTorch 后检测 CUDA/GPU 可用性。
+- 项目解释器：Python 3.13.7（`.venv`）
+- PyTorch：2.7.1+cu118
+- TorchVision：0.22.1+cu118
+- 训练设备：NVIDIA GeForce RTX 3070 Ti Laptop GPU（CUDA 可用）
+
+每次开始项目工作前，在 PowerShell 中执行：
+
+```powershell
+cd C:\Users\Gezihao\Desktop\学习记录\imagenette-classification
+.\.venv\Scripts\Activate.ps1
+```
 
 ## 数据位置
 
-待下载：`data/imagenette2-160/`。
+数据已下载并解压至：`data/imagenette2-160/`。
+
+- 官方 `train/`：9,469 张 JPG 图片，后续将按类别分层划分为训练集和内部验证集。
+- 官方 `val/`：3,925 张 JPG 图片，只用于最终留出测试。
+- `noisy_imagenette.csv`：本项目不使用。
+
+## 版本控制
+
+- 本地默认分支：`main`
+- GitHub 私有仓库：[smallmoon661/imagenette-classification](https://github.com/smallmoon661/imagenette-classification)
+- 原始数据、虚拟环境和模型权重通过 `.gitignore` 排除，不进入普通 Git 提交。
