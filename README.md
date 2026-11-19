@@ -14,6 +14,7 @@
 - [x] 初始化本地 Git 仓库并推送至 GitHub
 - [x] 固定数据划分与类别映射
 - [x] 生成 10 类样本图与各划分的类别数量统计
+- [x] 实现共享的数据读取与预处理，并检查真实 batch
 - [ ] 完成三组训练与最终测试
 - [ ] 整理图表、报告和学习过程记录
 
@@ -70,6 +71,22 @@ python src\prepare_data.py
 - `outputs/data/class_counts.csv`：三个划分中各类别的图片数量。
 
 后续 MLP、CNN 和 CNN 水平翻转对照必须复用这些 CSV，不重新随机划分数据。
+
+## 数据读取与预处理
+
+三个实验都通过 `src/data.py` 读取固定划分，并统一执行：RGB 转换、短边缩放至 160、中心裁剪为 `160×160`、`ToTensor()` 像素缩放到 `0~1`。
+
+只有 `cnn-flip` 实验的**训练集**额外在中心裁剪之后、转张量之前执行 `RandomHorizontalFlip(p=0.5)`；验证集和测试集不翻转。
+
+训练前可运行以下命令检查真实 batch：
+
+```powershell
+python src\inspect_batch.py
+python src\inspect_batch.py --horizontal-flip
+python src\inspect_batch.py --split val
+```
+
+检查结果应包含：训练集 7,575 张、验证集 1,894 张；图像批次形状为 `(64, 3, 160, 160)`，数据类型为 `float32`，像素范围为 `0~1`。
 
 ## 版本控制
 
