@@ -16,6 +16,7 @@
 - [x] 生成 10 类样本图与各划分的类别数量统计
 - [x] 实现共享的数据读取与预处理，并检查真实 batch
 - [x] 定义 MLP 与 CNN，并检查结构、参数量和层输出形状
+- [x] 建立三组实验配置与训练循环，并完成单 batch 冒烟测试
 - [ ] 完成三组训练与最终测试
 - [ ] 整理图表、报告和学习过程记录
 
@@ -100,6 +101,30 @@ python src\inspect_models.py
 - MLP：`Flatten(76800) → Linear(76800, 256) → ReLU → Linear(256, 10)`，可训练参数总量为 19,663,626。
 - CNN：四组 `3×3 Conv → ReLU → 2×2 MaxPool`（输出通道为 32、64、128、128），接 `AdaptiveAvgPool2d(4×4)`、`Linear(2048, 256)`、ReLU 和 `Linear(256, 10)`；可训练参数总量为 767,946。
 - 两种模型都输出形状 `(64, 10)` 的原始类别得分（logits）。训练时交叉熵损失直接接收 logits，不在模型末尾加入 softmax。
+
+## 训练配置与运行
+
+三组实验配置分别位于 `configs/mlp.yaml`、`configs/cnn.yaml` 和 `configs/cnn-flip.yaml`。三组共同使用：seed=42、交叉熵损失、Adam、学习率 0.001、batch size 64、weight decay 0、20 个 epoch、无预训练权重。
+
+`cnn` 与 `cnn-flip` 的模型结构、数据划分、初始随机种子、优化器和训练参数相同；唯一差异是 `cnn-flip` 的训练预处理中开启 `horizontal_flip_train: true`。
+
+训练前可做无输出文件的单 batch 冒烟测试：
+
+```powershell
+python src\train.py --config configs\mlp.yaml --smoke-test
+python src\train.py --config configs\cnn.yaml --smoke-test
+python src\train.py --config configs\cnn-flip.yaml --smoke-test
+```
+
+正式训练命令如下。每次正式运行都会重新创建模型和优化器，完整训练 20 个 epoch：
+
+```powershell
+python src\train.py --config configs\mlp.yaml
+python src\train.py --config configs\cnn.yaml
+python src\train.py --config configs\cnn-flip.yaml
+```
+
+每个 epoch 会保存训练/验证 loss 与 accuracy 至 `outputs/<实验名>/history.csv`。只有验证 accuracy 严格更高时才保存 `checkpoints/<实验名>/best.pt`；若并列，保留较早轮次。训练过程不读取最终测试集。
 
 ## 版本控制
 
