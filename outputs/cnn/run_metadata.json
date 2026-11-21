@@ -1,0 +1,15 @@
+{
+  "experiment_name": "cnn",
+  "model": "cnn",
+  "device": "cuda",
+  "trainable_parameters": 767946,
+  "initial_weights_sha256": "403e7b108243b95bae365b96a68ba1452c7a2793056fb4a01ae2c0fbe1a48f22",
+  "seed": 42,
+  "batch_size": 64,
+  "epochs": 20,
+  "learning_rate": 0.001,
+  "weight_decay": 0.0,
+  "horizontal_flip_train": false,
+  "best_epoch": 18,
+  "best_val_accuracy": 0.7085533262935586
+}
