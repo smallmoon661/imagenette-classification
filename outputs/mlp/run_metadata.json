@@ -1,0 +1,15 @@
+{
+  "experiment_name": "mlp",
+  "model": "mlp",
+  "device": "cuda",
+  "trainable_parameters": 19663626,
+  "initial_weights_sha256": "ec7f872dc3a089a9a5707e65e5277d169e7792304f62a1f49b90b471b7b06638",
+  "seed": 42,
+  "batch_size": 64,
+  "epochs": 20,
+  "learning_rate": 0.001,
+  "weight_decay": 0.0,
+  "horizontal_flip_train": false,
+  "best_epoch": 15,
+  "best_val_accuracy": 0.3764519535374868
+}
