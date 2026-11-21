@@ -87,9 +87,23 @@ def save_confusion_matrix(matrix: np.ndarray, names: list[str], output_path: Pat
 
 
 def save_examples(predictions: pd.DataFrame, output_path: Path, experiment: str) -> None:
-    """Save up to four correct and eight incorrect predictions with true/predicted names."""
-    correct = predictions[predictions["is_correct"]].head(4)
-    incorrect = predictions[~predictions["is_correct"]].head(8)
+    """Save deterministic examples from multiple true classes, rather than CSV order."""
+    correct_pool = predictions[predictions["is_correct"]]
+    incorrect_pool = predictions[~predictions["is_correct"]]
+
+    # One correct image from four spread-out classes, and one incorrect image
+    # from eight different classes. This prevents the figure from showing only
+    # the first class in the test CSV (previously all samples were tench).
+    correct_labels = [0, 3, 6, 9]
+    incorrect_labels = list(range(8))
+    correct = pd.concat(
+        [correct_pool[correct_pool["true_label"] == label].head(1) for label in correct_labels],
+        ignore_index=True,
+    )
+    incorrect = pd.concat(
+        [incorrect_pool[incorrect_pool["true_label"] == label].head(1) for label in incorrect_labels],
+        ignore_index=True,
+    )
     selected = pd.concat([correct, incorrect], ignore_index=True)
     figure, axes = plt.subplots(3, 4, figsize=(16, 12))
     for axis, (_, row) in zip(axes.flat, selected.iterrows()):
@@ -105,7 +119,7 @@ def save_examples(predictions: pd.DataFrame, output_path: Path, experiment: str)
         axis.axis("off")
     for axis in axes.flat[len(selected) :]:
         axis.axis("off")
-    figure.suptitle(f"{experiment}: first 4 correct and first 8 incorrect test predictions", fontsize=16)
+    figure.suptitle(f"{experiment}: diverse correct and incorrect test predictions", fontsize=16)
     figure.tight_layout()
     figure.savefig(output_path, dpi=160, bbox_inches="tight")
     plt.close(figure)

@@ -1,0 +1,21 @@
+{
+  "experiment_name": "cnn-flip",
+  "checkpoint": "C:\\Users\\Gezihao\\Desktop\\学习记录\\imagenette-classification\\checkpoints\\cnn-flip\\best.pt",
+  "selected_epoch": 20,
+  "selected_val_accuracy": 0.7154171066525871,
+  "test_image_count": 3925,
+  "accuracy": 0.726624203821656,
+  "macro_f1": 0.7264935052361507,
+  "per_class_recall": {
+    "tench": 0.7829457364341085,
+    "English springer": 0.8632911392405064,
+    "cassette player": 0.7058823529411765,
+    "chain saw": 0.6036269430051814,
+    "church": 0.8092909535452323,
+    "French horn": 0.766497461928934,
+    "garbage truck": 0.7300771208226221,
+    "gas pump": 0.5513126491646778,
+    "golf ball": 0.6365914786967418,
+    "parachute": 0.823076923076923
+  }
+}

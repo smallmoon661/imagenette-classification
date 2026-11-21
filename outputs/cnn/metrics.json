@@ -1,0 +1,21 @@
+{
+  "experiment_name": "cnn",
+  "checkpoint": "C:\\Users\\Gezihao\\Desktop\\学习记录\\imagenette-classification\\checkpoints\\cnn\\best.pt",
+  "selected_epoch": 18,
+  "selected_val_accuracy": 0.7085533262935586,
+  "test_image_count": 3925,
+  "accuracy": 0.710828025477707,
+  "macro_f1": 0.7110133581045416,
+  "per_class_recall": {
+    "tench": 0.7183462532299741,
+    "English springer": 0.8050632911392405,
+    "cassette player": 0.7450980392156863,
+    "chain saw": 0.5362694300518135,
+    "church": 0.706601466992665,
+    "French horn": 0.700507614213198,
+    "garbage truck": 0.794344473007712,
+    "gas pump": 0.7016706443914081,
+    "golf ball": 0.6165413533834586,
+    "parachute": 0.7871794871794872
+  }
+}

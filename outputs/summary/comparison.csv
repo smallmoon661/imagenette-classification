@@ -1,0 +1,4 @@
+experiment,display_name,model,horizontal_flip_train,trainable_parameters,best_epoch,best_val_accuracy,test_images,test_accuracy,test_macro_f1
+mlp,MLP,mlp,False,19663626,15,0.3764519535374868,3925,0.36509554140127387,0.3558215191103485
+cnn,CNN,cnn,False,767946,18,0.7085533262935586,3925,0.710828025477707,0.7110133581045416
+cnn-flip,CNN + horizontal flip,cnn,True,767946,20,0.7154171066525871,3925,0.726624203821656,0.7264935052361507

@@ -1,0 +1,21 @@
+{
+  "experiment_name": "mlp",
+  "checkpoint": "C:\\Users\\Gezihao\\Desktop\\学习记录\\imagenette-classification\\checkpoints\\mlp\\best.pt",
+  "selected_epoch": 15,
+  "selected_val_accuracy": 0.3764519535374868,
+  "test_image_count": 3925,
+  "accuracy": 0.36509554140127387,
+  "macro_f1": 0.3558215191103485,
+  "per_class_recall": {
+    "tench": 0.4186046511627907,
+    "English springer": 0.20506329113924052,
+    "cassette player": 0.5126050420168067,
+    "chain saw": 0.16839378238341968,
+    "church": 0.43765281173594134,
+    "French horn": 0.27918781725888325,
+    "garbage truck": 0.4498714652956298,
+    "gas pump": 0.2052505966587112,
+    "golf ball": 0.3182957393483709,
+    "parachute": 0.6794871794871795
+  }
+}
