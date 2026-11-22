@@ -8,18 +8,18 @@
 
 ## 当前进度
 
-- [x] 建立项目目录
-- [x] 记录运行环境
-- [x] 下载并检查 Imagenette 数据
-- [x] 初始化本地 Git 仓库并推送至 GitHub
-- [x] 固定数据划分与类别映射
-- [x] 生成 10 类样本图与各划分的类别数量统计
-- [x] 实现共享的数据读取与预处理，并检查真实 batch
-- [x] 定义 MLP 与 CNN，并检查结构、参数量和层输出形状
-- [x] 建立三组实验配置与训练循环，并完成单 batch 冒烟测试
-- [x] 完成三组训练，并按内部验证集选择最佳权重
-- [x] 完成三组最终留出测试、混淆矩阵和错误样例分析
-- [x] 整理曲线、对比图表、实验报告和学习过程记录
+- ✅ 建立项目目录
+- ✅ 记录运行环境
+- ✅ 下载并检查 Imagenette 数据
+- ✅ 初始化本地 Git 仓库并推送至 GitHub
+- ✅ 固定数据划分与类别映射
+- ✅ 生成 10 类样本图与各划分的类别数量统计
+- ✅ 实现共享的数据读取与预处理，并检查真实 batch
+- ✅ 定义 MLP 与 CNN，并检查结构、参数量和层输出形状
+- ✅ 建立三组实验配置与训练循环，并完成单 batch 冒烟测试
+- ✅ 完成三组训练，并按内部验证集选择最佳权重
+- ✅ 完成三组最终留出测试、混淆矩阵和错误样例分析
+- ✅ 整理曲线、对比图表、实验报告和学习过程记录
 
 ## 最终结果
 
@@ -161,6 +161,42 @@ python src\plot_results.py
 - 最终测试对比图：`outputs/summary/test-comparison.png`
 - 最终结果表：`outputs/summary/comparison.csv`
 - 完整分析报告：[report/experiment_report.md](report/experiment_report.md)
+- 正式中文报告：[PDF](report/experiment_report.pdf) / [LaTeX 源文件](report/experiment_report.tex)
+
+重新编译报告：进入 `report/`，使用 XeLaTeX 连续编译两次。需保留 `outputs/` 中被引用的图表；编译不需要 Python 虚拟环境。
+
+```powershell
+cd report
+xelatex -interaction=nonstopmode -halt-on-error experiment_report.tex
+xelatex -interaction=nonstopmode -halt-on-error experiment_report.tex
+cd ..
+```
+
+## 项目级 Skill
+
+技能入口：[pytorch-image-classification](.agents/skills/pytorch-image-classification/SKILL.md)。它整理了本项目的环境检查、固定实验条件、训练/评估/绘图入口、常见问题与记录方式。
+
+**主要作用：检查项目状态、复用最佳模型、重绘结果、开展新实验、维护学习记录。**
+
+| 想完成的工作 | 调用后会做什么 |
+| --- | --- |
+| 检查状态或排错 | 检查解释器、依赖、GPU、数据、配置和结果文件。 |
+| 使用已有模型 | 加载 20 轮中按内部验证集选出的最佳参数，运行评估并保存结果；不一定使用第 20 轮参数。 |
+| 重画曲线和对比图 | 读取已有记录执行绘图，无需重新训练或加载权重。 |
+| 从头开展新实验 | 根据新目标修改配置或补充代码，在独立输出位置运行实验并保留旧结果。 |
+| 分析与记录 | 解释真实指标和图表，按要求更新学习记录、README 或报告。 |
+
+Skill 是给 AI 的操作指导，由 AI 执行相应代码；它会根据当前要求选择流程。已有入口可以直接运行，尚未实现的功能需要先开发。当前训练脚本重新运行会从头训练，不会自动续训。
+
+在本项目目录下开启新会话，发送：
+
+```text
+使用 $pytorch-image-classification 读取当前项目，复用现有结果重新生成三组曲线和测试对比图，不重新训练。检查输出并将本次 Skill 调用结果写入学习记录。
+```
+
+若技能未被发现，指定 `.agents/skills/pytorch-image-classification/SKILL.md` 让助手读取。技能文件建立与新会话实际调用是两个阶段；后者须根据真实执行结果记录。
+
+已完成新会话 Skill 调用和中文 LaTeX/PDF 报告；学习规划收尾尚需核对 Obsidian 笔记连接、含三组权重的资料包以及教师访问方式。
 
 ## 版本控制
 

@@ -1,0 +1,4 @@
+interface:
+  display_name: "PyTorch 图像分类实验"
+  short_description: "复用本项目已验证的图像分类训练、模型评估、结果绘图与学习记录流程"
+  default_prompt: "使用 $pytorch-image-classification 读取当前项目，复用已有结果重新生成曲线和对比图，核对输出并记录本次调用。"
